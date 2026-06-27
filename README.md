@@ -13,7 +13,7 @@ To detect rapacity, the system must first understand the semantic space of greed
 
 *   **Word Embeddings & Vector Space Models:** Words are mapped to dense vectors in $\mathbb{R}^d$. Rapacious concepts (e.g., *monopolize, exploit, hoard, extract*) will cluster together. 
 *   **Cosine Similarity:** To find if a text contains rapacious language, we calculate the geometric angle between the document vector and a "rapacity seed vector."
-    $$ \cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|} = \frac{\sum_{i=1}^{d} A_i B_i}{\sqrt{\sum_{i=1}^{d} A_i^2} \sqrt{\sum_{i=1}^{d} B_i^2}} $$
+    $ \cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|} = \frac{\sum_{i=1}^{d} A_i B_i}{\sqrt{\sum_{i=1}^{d} A_i^2} \sqrt{\sum_{i=1}^{d} B_i^2}} $
 *   **Transformer Attention Mathematics:** Modern models use self-attention to understand the *context* of rapacity (e.g., distinguishing "the market extracted value" from "the dentist extracted a tooth"). The attention mechanism computes the relevance of words using scaled dot-product attention:
     $$ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V $$
     Where $Q$ (Query), $K$ (Key), and $V$ (Value) are matrices. The softmax function ensures the model assigns high mathematical weight to the relationships between "actors" (corporations/individuals) and "resources" being extracted.
