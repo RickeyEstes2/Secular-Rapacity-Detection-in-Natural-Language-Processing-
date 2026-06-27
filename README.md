@@ -1,55 +1,168 @@
-While "secular rapacity" is not a standard, out-of-the-box benchmark in Natural Language Processing (NLP), it can be rigorously operationalized as a computational text analysis task. 
+# 🦅 Secular Rapacity Detection (SRD)
 
-To detect it mathematically, we must deconstruct the phrase into computable variables:
-1. **Rapacity:** Aggressively greedy, extractive, or predatory behavior (semantic polarity, extractive semantic roles, negative sentiment toward resources/victims).
-2. **Secular:** This can mean either **non-religious/systemic** (e.g., corporate or economic greed rather than moral failing) or a **long-term, non-cyclical trend** (as in "secular trend" in finance/economics).
+> **A computational mathematics and NLP framework for detecting systemic, long-term extractive behavior in text corpora.**
 
-Implementing the detection of this concept requires a synthesis of linear algebra, probability theory, time-series analysis, graph theory, and information theory. Here is the computational mathematics behind how such a system is built.
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
+[![arXiv](https://img.shields.io/badge/arXiv-2026.06.0001-b31b1b.svg)](https://arxiv.org/)
+
+## 📖 Overview
+
+**"Secular Rapacity"** is operationalized in this framework as aggressively greedy, extractive, or predatory behavior that is either **systemic/non-religious** (e.g., corporate/economic extraction) or represents a **long-term, non-cyclical trend**. 
+
+This repository provides the mathematical foundations, algorithms, and pipeline architecture to detect, quantify, and track secular rapacity in large-scale text corpora using advanced computational mathematics.
 
 ---
 
-### 1. Quantifying "Rapacity" (Linear Algebra & Topology)
-To detect rapacity, the system must first understand the semantic space of greed, extraction, and predation. This is achieved using high-dimensional vector spaces.
+## 🏗️ System Architecture
 
-*   **Word Embeddings & Vector Space Models:** Words are mapped to dense vectors in $\mathbb{R}^d$. Rapacious concepts (e.g., *monopolize, exploit, hoard, extract*) will cluster together. 
-*   **Cosine Similarity:** To find if a text contains rapacious language, we calculate the geometric angle between the document vector and a "rapacity seed vector."
-    $ \cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|} = \frac{\sum_{i=1}^{d} A_i B_i}{\sqrt{\sum_{i=1}^{d} A_i^2} \sqrt{\sum_{i=1}^{d} B_i^2}} $
-*   **Transformer Attention Mathematics:** Modern models use self-attention to understand the *context* of rapacity (e.g., distinguishing "the market extracted value" from "the dentist extracted a tooth"). The attention mechanism computes the relevance of words using scaled dot-product attention:
+```mermaid
+graph LR
+    A[Raw Text Corpus] --> B[1. Bayesian Context Filter]
+    B --> C[2. Transformer Embeddings]
+    C --> D[3. Knowledge Graph Mapping]
+    D --> E[4. Time-Series CUSUM]
+    E --> F((Secular Rapacity Score))
+    style F fill:#f9d0c4,stroke:#333,stroke-width:2px
+```
+
+---
+
+## 🧮 Mathematical Foundations
+
+The SRD pipeline relies on five core mathematical pillars. 
+
+### 1. Semantic Quantification (Linear Algebra & Topology)
+To detect rapacity, we map the semantic space of greed and extraction into high-dimensional vector spaces ($\mathbb{R}^d$).
+
+*   **Cosine Similarity:** Measures the geometric alignment between a document vector and a "rapacity seed vector":
+    $$ \cos(\theta) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\| \|\mathbf{B}\|} = \frac{\sum_{i=1}^{d} A_i B_i}{\sqrt{\sum_{i=1}^{d} A_i^2} \sqrt{\sum_{i=1}^{d} B_i^2}} $$
+*   **Transformer Self-Attention:** Contextualizes extractive actions (e.g., distinguishing market extraction from dental extraction) via scaled dot-product attention:
     $$ \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}\right)V $$
-    Where $Q$ (Query), $K$ (Key), and $V$ (Value) are matrices. The softmax function ensures the model assigns high mathematical weight to the relationships between "actors" (corporations/individuals) and "resources" being extracted.
 
-### 2. Isolating the "Secular" Context (Probability & Bayesian Inference)
-If "secular" is defined as *non-religious or systemic economic behavior*, we must mathematically separate secular texts from moral, religious, or purely interpersonal texts. This is done using **Topic Modeling**.
+### 2. Context Isolation (Probability & Bayesian Inference)
+To ensure we are measuring *systemic/secular* rapacity rather than moral or interpersonal greed, we use **Latent Dirichlet Allocation (LDA)** to isolate the economic/systemic topic cluster.
 
-*   **Latent Dirichlet Allocation (LDA):** LDA assumes documents are mixtures of topics, and topics are mixtures of words. It uses Dirichlet priors to model the probability distributions.
-*   **The Generative Mathematics:** For a document $d$ and word $w$, the joint probability is modeled as:
+*   **Generative Mathematics:** The joint probability of a document $d$ and word $w$ is modeled as:
     $$ P(w, z | \alpha, \beta) = P(w | z, \beta) P(z | d, \alpha) $$
-    Where $z$ is the topic assignment, $\alpha$ is the document-topic Dirichlet prior, and $\beta$ is the topic-word Dirichlet prior.
-*   **Variational Inference:** Because exact inference is computationally intractable, the system uses Variational Bayes to maximize the Evidence Lower Bound (ELBO), allowing the algorithm to isolate the "secular/economic" topic cluster from other clusters, ensuring we are only measuring rapacity within the correct systemic context.
+    *(Where $z$ is the topic assignment, and $\alpha, \beta$ are Dirichlet priors).*
+*   **Variational Inference:** Maximizes the Evidence Lower Bound (ELBO) to make exact inference computationally tractable.
 
-### 3. Detecting "Secular" Trends (Time-Series & Stochastic Calculus)
-If "secular" is defined as a *long-term, non-cyclical trend* (e.g., tracking the rise of corporate greed in financial reports over 50 years), we must apply time-series mathematics to the semantic outputs.
+### 3. Trend Detection (Stochastic Time-Series)
+To prove the detected rapacity is a "secular" (long-term) trend rather than a cyclical fluctuation, we apply time-series mathematics to the semantic outputs.
 
-*   **Semantic Time-Series:** We convert the "rapacity scores" of documents into a continuous time-series signal $X_t$.
-*   **Change-Point Detection (CUSUM Algorithm):** To detect when a "secular shift" toward rapacity begins, we use the Cumulative Sum (CUSUM) control chart, which is highly sensitive to long-term shifts in the mean of a distribution.
+*   **CUSUM Change-Point Detection:** Flags the exact moment a secular shift toward rapacity begins:
     $$ S_t = \max(0, S_{t-1} + X_t - \mu_0 - k) $$
-    Where $S_t$ is the cumulative sum at time $t$, $\mu_0$ is the baseline historical average of rapacity, and $k$ is a slack parameter. If $S_t$ exceeds a mathematical threshold $h$, a secular trend shift is flagged.
-*   **Autoregressive Modeling (ARIMA):** To ensure the detected rapacity is a "secular" (long-term) trend and not a seasonal/cyclical fluctuation, we apply differencing ($d$) in an ARIMA$(p,d,q)$ model to make the time-series stationary, mathematically stripping away short-term noise.
+    *(Where $S_t$ is the cumulative sum, $\mu_0$ is the historical baseline, and $k$ is a slack parameter. A shift is flagged if $S_t > h$).*
+*   **ARIMA Differencing:** Applies differencing ($d$) to make the time-series stationary, mathematically stripping away short-term seasonal noise.
 
-### 4. Mapping Extractive Relationships (Graph Theory & Matrix Factorization)
-Rapacity inherently implies a relationship: an *actor* taking from a *victim/resource*. We can model this using Knowledge Graphs and Semantic Role Labeling (SRL).
+### 4. Actor Mapping (Graph Theory & Matrix Factorization)
+Rapacity implies a directed relationship: an *actor* extracting from a *victim/resource*. We model this using directed Knowledge Graphs $G = (V, E)$.
 
-*   **Adjacency Matrices:** We construct a directed graph $G = (V, E)$ where nodes $V$ are entities (corporations, governments, individuals) and edges $E$ represent extractive actions. This is represented as an adjacency matrix $A$.
-*   **Eigenvector Centrality & PageRank:** To find the most "rapacious" actors (those who extract the most from highly connected resources), we calculate the eigenvector centrality. The centrality score $x_i$ of node $i$ is proportional to the sum of the scores of the nodes it connects to:
-    $$ x_i = \frac{1}{\lambda} \sum_{j} A_{ij} x_j \implies \mathbf{A}\mathbf{x} = \lambda \mathbf{x} $$
-    Where $\lambda$ is the principal eigenvalue. High eigenvector centrality in an extractive graph mathematically identifies systemic, secular predators.
+*   **Eigenvector Centrality:** Identifies the most "rapacious" systemic actors by calculating the principal eigenvalue $\lambda$ of the adjacency matrix $A$:
+    $$ \mathbf{A}\mathbf{x} = \lambda \mathbf{x} $$
+    High eigenvector centrality in an extractive graph mathematically isolates the primary predators.
 
-### 5. Measuring Systemic Shifts (Information Theory)
-Finally, to measure how the *overall distribution* of language in a corpus is shifting toward secular rapacity over time, we use Information Theory.
+### 5. Systemic Shift Measurement (Information Theory)
+To quantify how the *overall distribution* of language in a corpus is shifting toward secular rapacity over decades.
 
-*   **Kullback-Leibler (KL) Divergence:** We compare the probability distribution of words in a historical baseline corpus ($Q$) to a modern corpus ($P$). KL divergence measures how much information is "lost" or how much the language has shifted.
+*   **Kullback-Leibler (KL) Divergence:** Measures the information shift from a historical baseline distribution ($Q$) to a modern distribution ($P$):
     $$ D_{\text{KL}}(P \parallel Q) = \sum_{x \in \mathcal{X}} P(x) \log \left( \frac{P(x)}{Q(x)} \right) $$
-*   **Jensen-Shannon (JS) Divergence:** Because KL divergence is asymmetric, JS divergence is often used to symmetrically measure the convergence of the two text distributions. A rising JS divergence score over decades, specifically localized to the "rapacity" vector subspace, provides mathematical proof of a secular shift in systemic behavior.
+*   **Jensen-Shannon (JS) Divergence:** Used as a symmetric alternative to KL to track the convergence of text distributions over time.
 
-### Summary
-To implement **secular rapacity detection**, a system does not look for a single keyword. Instead, it uses **linear algebra** to map the semantics of greed, **Bayesian probability** to isolate secular/economic contexts, **stochastic time-series math** to prove the trend is long-term rather than cyclical, **graph theory** to identify the predators and victims, and **information theory** to quantify the systemic shift in human language over time.
+---
+
+## 🚀 Quick Start
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/secular-rapacity-detection.git
+cd secular-rapacity-detection
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### Usage Example
+
+```python
+from srd import SecularRapacityDetector
+from srd.graph import ExtractiveKnowledgeGraph
+from srd.timeseries import CUSUMTrendAnalyzer
+
+# 1. Initialize the detector with a corpus
+detector = SecularRapacityDetector(
+    model="roberta-large", 
+    lda_topics=50, 
+    context_filter="systemic_economic"
+)
+
+# 2. Fit the model on historical and modern corpora
+detector.fit(historical_corpus, modern_corpus)
+
+# 3. Extract the knowledge graph of actors and resources
+graph = ExtractiveKnowledgeGraph(detector.embeddings)
+top_predators = graph.get_eigenvector_centrality(top_n=10)
+
+# 4. Run CUSUM to find the exact year the secular trend shifted
+analyzer = CUSUMTrendAnalyzer(detector.rapacity_scores)
+shift_year, confidence = analyzer.detect_change_point()
+
+print(f"Secular rapacity shift detected in {shift_year} (Confidence: {confidence:.2f})")
+print(f"Primary extractive actors: {top_predators}")
+```
+
+---
+
+## 📂 Project Structure
+
+```text
+secular-rapacity-detection/
+├── srd/
+│   ├── __init__.py
+│   ├── embeddings.py       # Linear algebra & Transformer attention math
+│   ├── bayesian.py         # LDA & Variational Inference for context
+│   ├── timeseries.py       # CUSUM & ARIMA for secular trend detection
+│   ├── graph.py            # Adjacency matrices & Eigenvector centrality
+│   └── information.py      # KL & JS Divergence calculations
+├── tests/
+├── notebooks/              # Jupyter notebooks with mathematical proofs
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! 
+If you want to add new mathematical formulations for detecting extractive semantics, please open a Pull Request.
+
+1. Fork it (`gh repo fork yourusername/secular-rapacity-detection`)
+2. Create your feature branch (`git checkout -b feature/NewMathModule`)
+3. Commit your changes (`git commit -m 'Add new mathematical module'`)
+4. Push to the branch (`git push origin feature/NewMathModule`)
+5. Open a Pull Request
+
+---
+
+## 📜 License
+
+Distributed under the MIT License. See [`LICENSE`](LICENSE) for more information.
+
+---
+
+## 📚 Citation
+
+If you use this framework in your research, please cite:
+
+```bibtex
+@software{secular_rapacity_2026,
+  title  = {Secular Rapacity Detection: A Computational Mathematics Framework},
+  author = {Your Name/Organization},
+  year   = {2026},
+  url    = {https://github.com/yourusername/secular-rapacity-detection}
+}
+```
